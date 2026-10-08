@@ -27,9 +27,9 @@ ListNode* rev(ListNode* head, int k,int a) {
     }
         //recursion
     if(a>1){
-        if(next!=NULL){
+        
             head->next= rev(next, k,a-1);
-        }}
+        }
     else{
         head->next = next;
         }
