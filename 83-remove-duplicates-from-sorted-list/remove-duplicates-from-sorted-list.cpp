@@ -16,7 +16,11 @@ public:
 
         while (curr != NULL && curr->next !=NULL) {
             if (curr->val == curr->next->val) {
-                curr->next = curr->next->next;   
+                ListNode* next_nex=  curr->next->next;
+                ListNode* todlt=curr->next;
+                delete(todlt);
+                curr->next = next_nex; 
+
             } else {
                 curr = curr->next;              
             }
