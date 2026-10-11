@@ -12,7 +12,7 @@ ListNode* det(ListNode *head) {
     // if(head==NULL || head->next==NULL){
     //     return 0;
     // }
-    while( fast!=NULL && fast->next!=NULL && fast!=NULL){
+    while( fast!=NULL && fast->next!=NULL ){
         slow=slow->next;
         fast=fast->next->next;
         if(slow==fast){
