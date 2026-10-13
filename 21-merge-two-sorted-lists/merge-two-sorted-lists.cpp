@@ -35,28 +35,69 @@
 //         return dummy->next;
 //     }
 // };
+// class Solution {
+// public:
+//     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+//         ListNode dummy(0);
+//         ListNode* curr = &dummy;
+
+//         while (list1 != NULL && list2 != NULL) {
+//             if (list1->val <= list2->val) {
+//                 curr->next = list1;
+//                 list1 = list1->next;
+//             } else {
+//                 curr->next = list2;
+//                 list2 = list2->next;
+//             }
+//             curr = curr->next;
+//         }
+
+//         if (list1 != NULL)
+//             curr->next = list1;
+//         else
+//             curr->next = list2;
+
+//         return dummy.next;
+//     }
+// };
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode dummy(0);
-        ListNode* curr = &dummy;
+    ListNode* solve(ListNode* list1, ListNode* list2) {
+        if (list1 == NULL) return list2;
+        if (list2 == NULL) return list1;
 
-        while (list1 != NULL && list2 != NULL) {
-            if (list1->val <= list2->val) {
-                curr->next = list1;
-                list1 = list1->next;
-            } else {
-                curr->next = list2;
-                list2 = list2->next;
+        ListNode* prev = list1;
+        ListNode* curr = list1->next;
+        ListNode* next = list2;
+
+        while (next != NULL) {
+            if (curr == NULL) {
+                prev->next = next;
+                break;
             }
-            curr = curr->next;
+
+            if (next->val <= curr->val) {
+                ListNode* next2 = next->next;
+                prev->next = next;
+                next->next = curr;
+                prev = next;
+                next = next2;
+            } else {
+                prev = curr;
+                curr = curr->next;
+            }
         }
 
-        if (list1 != NULL)
-            curr->next = list1;
-        else
-            curr->next = list2;
+        return list1;
+    }
 
-        return dummy.next;
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if (list1 == NULL) return list2;
+        if (list2 == NULL) return list1;
+
+        if (list1->val <= list2->val)
+            return solve(list1, list2);
+        else
+            return solve(list2, list1);
     }
 };
