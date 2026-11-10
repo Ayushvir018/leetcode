@@ -18,14 +18,14 @@ public:
 
         ListNode* prev = dummy;
 
-        // Reach node before left
+        // left tk chlo
         for(int i = 1; i < left; i++) {
             prev = prev->next;
         }
 
         ListNode* curr = prev->next;
 
-        // Reverse using head insertion
+        // Reverse krna chalu right tk
         for(int i = 0; i < right-left; i++) {
 
             ListNode* next = curr->next;
